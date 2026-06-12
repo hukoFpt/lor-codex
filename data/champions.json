@@ -1,0 +1,334 @@
+{
+  "champions": [
+    {
+      "id": "aatrox",
+      "name": "Aatrox",
+      "region": "Runeterra",
+      "backgroundImage": "http://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06RU026-full.png",
+      "backgroundPosition": "right 22%",
+      "overview": {
+        "description": "Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find freedom once more, corrupting and transforming those foolish enough to try and wield the magical weapon the contained his essence. Now, with stolen flesh, he walks Runeterra in a brutal approximation of his previous form, seeking an apocalyptic and long overdue vengeance.",
+        "playStyle": "Combo",
+        "difficulty": "Hard"
+      },
+      "constellation": {
+        "nodes": [
+          {
+            "id": "infernal_chains",
+            "title": "Infernal Chains",
+            "effect": "When an equipped ally strikes, reduce the cost of a random card in hand by 1.",
+            "left": "39%",
+            "top": "90%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "imageUrl": "http://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06RU026T7-full.png",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "id": "corrupted_weapon",
+            "title": "Corrupted Weapon",
+            "effect": "+1 Starting Mana.\nGame Start: Create in hand 2 random Darkin equipment.",
+            "left": "50%",
+            "top": "79%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "imageUrl": "http://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06RU026T1-full.png",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "id": "infernal_chains_ii",
+            "title": "Infernal Chains II",
+            "effect": "When an equipped ally strikes, reduce the cost of a random card in hand by 2.",
+            "left": "39%",
+            "top": "62%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "imageUrl": "http://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06RU026T7-full.png",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "armed_to_the_teeth",
+            "title": "Armed To The Teeth",
+            "effect": "Allies with Equipment or attachments have +2|+2.",
+            "left": "24%",
+            "top": "65%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 60
+              },
+              {
+                "currency": "star_crystal",
+                "amount": 10
+              }
+            ],
+            "imageUrl": "https://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06DE039-full.png"
+          },
+          {
+            "id": "star_of_bounty",
+            "title": "Star of Bounty",
+            "effect": "+8 Regen.",
+            "left": "12%",
+            "top": "65%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "blue",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "star_of_legends",
+            "title": "Star of Legends",
+            "effect": "Your support champions have Iceborn Gauntlet.",
+            "left": "23%",
+            "top": "84%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "blue",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "manaflow",
+            "title": "Manaflow",
+            "effect": "Game Start: Get a mana gem.",
+            "left": "9%",
+            "top": "89%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "imageUrl": "https://dd.b.pvp.net/3_0_0/set3/en_us/img/cards/03PZ003T11-full.png",
+            "cost": [
+              {
+                "currency": "wild",
+                "amount": 80
+              },
+              {
+                "currency": "star_crystal",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "star_of_discovery",
+            "title": "Star of Discovery",
+            "effect": "Equipment you acquire in adventures have Phage.",
+            "left": "22%",
+            "top": "40%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "blue",
+            "cost": [
+              {
+                "currency": "fragment",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "star_of_blessings",
+            "title": "Star of Blessings",
+            "effect": "World Ender has Chalice of Harmony and Chalice of Harmony.",
+            "left": "34%",
+            "top": "30%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "blue",
+            "cost": [
+              {
+                "currency": "fragment",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "star_of_wonder",
+            "title": "Star of Wonder",
+            "effect": "Each Darkin Follower has an item.",
+            "left": "52%",
+            "top": "22%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "blue",
+            "cost": [
+              {
+                "currency": "fragment",
+                "amount": 40
+              }
+            ]
+          },
+          {
+            "id": "darkin_awakened",
+            "title": "Darkin Awakened",
+            "effect": "When you summon or transform a Darkin, double its stats.",
+            "left": "66%",
+            "top": "25%",
+            "iconType": "star",
+            "upgradeType": "Star Power",
+            "cost": [
+              {
+                "currency": "fragment",
+                "amount": 100
+              },
+              {
+                "currency": "nova",
+                "amount": 1
+              }
+            ],
+            "imageUrl": "http://dd.b.pvp.net/4_2_0/set6cde/en_us/img/cards/06RU026T2-full.png"
+          },
+          {
+            "id": "celestial_legends",
+            "title": "Celestial Legends",
+            "effect": "Support cards have an additional item.",
+            "left": "72%",
+            "top": "46%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "purple",
+            "cost": [
+              {
+                "currency": "gemstone",
+                "amount": 150
+              }
+            ]
+          },
+          {
+            "id": "celestial_bounty",
+            "title": "Celestial Bounty",
+            "effect": "+4 Regen for Runeterran Champions.",
+            "left": "91%",
+            "top": "26%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "purple",
+            "cost": [
+              {
+                "currency": "gemstone",
+                "amount": 250
+              }
+            ]
+          },
+          {
+            "id": "celestial_fortune",
+            "title": "Celestial Fortune",
+            "effect": "+5% to find Epic items and powers.\n+1% to find Legendary powers.",
+            "left": "80%",
+            "top": "11%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "purple",
+            "cost": [
+              {
+                "currency": "gemstone",
+                "amount": 250
+              }
+            ]
+          },
+          {
+            "id": "celestial_insight",
+            "title": "Celestial Insight",
+            "effect": "+100% XP for Runeterran Champions.",
+            "left": "77%",
+            "top": "25%",
+            "iconType": "star",
+            "upgradeType": "Bonus Stat",
+            "color": "purple",
+            "cost": [
+              {
+                "currency": "gemstone",
+                "amount": 350
+              }
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "from": "infernal_chains",
+            "to": "corrupted_weapon"
+          },
+          {
+            "from": "corrupted_weapon",
+            "to": "infernal_chains_ii"
+          },
+          {
+            "from": "infernal_chains_ii",
+            "to": "armed_to_the_teeth"
+          },
+          {
+            "from": "armed_to_the_teeth",
+            "to": "star_of_bounty"
+          },
+          {
+            "from": "star_of_bounty",
+            "to": "star_of_legends"
+          },
+          {
+            "from": "star_of_legends",
+            "to": "manaflow"
+          },
+          {
+            "from": "armed_to_the_teeth",
+            "to": "star_of_discovery"
+          },
+          {
+            "from": "star_of_discovery",
+            "to": "star_of_blessings"
+          },
+          {
+            "from": "star_of_blessings",
+            "to": "star_of_wonder"
+          },
+          {
+            "from": "star_of_wonder",
+            "to": "darkin_awakened"
+          },
+          {
+            "from": "darkin_awakened",
+            "to": "celestial_legends"
+          },
+          {
+            "from": "darkin_awakened",
+            "to": "celestial_fortune"
+          },
+          {
+            "from": "celestial_fortune",
+            "to": "celestial_bounty"
+          },
+          {
+            "from": "celestial_legends",
+            "to": "celestial_bounty"
+          },
+          {
+            "from": "celestial_bounty",
+            "to": "celestial_insight"
+          }
+        ]
+      }
+    }
+  ]
+}

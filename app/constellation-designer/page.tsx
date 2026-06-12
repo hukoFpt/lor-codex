@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { ConstellationNode, ConstellationConnection, computeNodeStarLevel } from "@/components/ChampionsTab";
+import { ConstellationNode, ConstellationConnection } from "@/types";
+import { computeNodeStarLevel } from "@/components/ChampionsTab";
 
 // Helper function to render vector SVGs inside nodes
 const renderDesignerNodeIcon = (nodeId: string, isStarPower: boolean, color?: "blue" | "purple", isPurpleStar?: boolean) => {
@@ -57,7 +58,6 @@ const renderDesignerNodeIcon = (nodeId: string, isStarPower: boolean, color?: "b
 const INITIAL_NODES: ConstellationNode[] = [
   {
     id: "star_1",
-    label: "1★",
     title: "Astral Might",
     effect: "Gain +1/+1 when playing a created card.",
     left: "15%",
@@ -67,7 +67,6 @@ const INITIAL_NODES: ConstellationNode[] = [
   },
   {
     id: "mana_1",
-    label: "Mana",
     title: "Cosmic Core",
     effect: "+1 Starting Mana.",
     left: "45%",
@@ -78,7 +77,6 @@ const INITIAL_NODES: ConstellationNode[] = [
   },
   {
     id: "star_2",
-    label: "2★",
     title: "Second Star",
     effect: "Double the effect of all spells.",
     left: "75%",
@@ -155,7 +153,6 @@ export default function ConstellationDesigner() {
     const newId = `node_${Date.now()}`;
     const newNode: ConstellationNode = {
       id: newId,
-      label: "Node",
       title: "New Upgrade",
       effect: "Grant allies a bonus when summoned.",
       left,
@@ -172,7 +169,6 @@ export default function ConstellationDesigner() {
     const newId = `node_${Date.now()}`;
     const newNode: ConstellationNode = {
       id: newId,
-      label: "Mana",
       title: "New Cosmic Star",
       effect: "Cosmic blessing upgrade effect.",
       left: "50%",
@@ -351,7 +347,7 @@ export default function ConstellationDesigner() {
               ref={canvasRef}
               onMouseMove={handleCanvasMouseMove}
               onDoubleClick={handleDoubleClick}
-              className="relative w-full h-[450px] bg-slate-950/70 border border-slate-900 rounded-2xl overflow-hidden backdrop-blur-sm shadow-inner cursor-crosshair select-none"
+              className="relative w-full aspect-video bg-slate-950/70 border border-slate-900 rounded-2xl overflow-hidden backdrop-blur-sm shadow-inner cursor-crosshair select-none"
             >
               {/* Custom uploaded/pasted background */}
               {bgImageUrl && (
@@ -489,27 +485,15 @@ export default function ConstellationDesigner() {
 
               {selectedNode ? (
                 <div className="flex flex-col gap-4 text-xs">
-                  {/* ID & Label */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-slate-400 font-mono">Node ID</label>
-                      <input
-                        type="text"
-                        value={selectedNode.id}
-                        onChange={(e) => handleIdChange(e.target.value)}
-                        className="bg-[#050810] border border-slate-800 p-2.5 rounded-lg text-slate-100 outline-none focus:border-[#c29d53]/50"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-slate-400 font-mono">Short Label</label>
-                      <input
-                        type="text"
-                        value={selectedNode.label}
-                        onChange={(e) => updateSelectedNode({ label: e.target.value })}
-                        className="bg-[#050810] border border-slate-800 p-2.5 rounded-lg text-slate-100 outline-none focus:border-[#c29d53]/50"
-                        placeholder="e.g. 1★"
-                      />
-                    </div>
+                  {/* ID */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-slate-400 font-mono">Node ID</label>
+                    <input
+                      type="text"
+                      value={selectedNode.id}
+                      onChange={(e) => handleIdChange(e.target.value)}
+                      className="w-full bg-[#050810] border border-slate-800 p-2.5 rounded-lg text-slate-100 outline-none focus:border-[#c29d53]/50"
+                    />
                   </div>
 
                   {/* Title */}
@@ -519,6 +503,18 @@ export default function ConstellationDesigner() {
                       type="text"
                       value={selectedNode.title}
                       onChange={(e) => handleTitleChange(e.target.value)}
+                      className="w-full bg-[#050810] border border-slate-800 p-2.5 rounded-lg text-slate-100 outline-none focus:border-[#c29d53]/50"
+                    />
+                  </div>
+
+                  {/* Image URL */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-slate-400 font-mono">Image URL (Optional)</label>
+                    <input
+                      type="text"
+                      value={selectedNode.imageUrl || ""}
+                      onChange={(e) => updateSelectedNode({ imageUrl: e.target.value })}
+                      placeholder="https://example.com/icon.png"
                       className="w-full bg-[#050810] border border-slate-800 p-2.5 rounded-lg text-slate-100 outline-none focus:border-[#c29d53]/50"
                     />
                   </div>
