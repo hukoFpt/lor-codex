@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { ConstellationNode, ConstellationConnection } from "@/types";
-import { computeNodeStarLevel } from "@/components/ChampionsTab";
+import { computeNodeStarLevel } from "@/utils/constellation";
 
 // Helper function to render vector SVGs inside nodes
 const renderDesignerNodeIcon = (nodeId: string, isStarPower: boolean, color?: "blue" | "purple", isPurpleStar?: boolean) => {
