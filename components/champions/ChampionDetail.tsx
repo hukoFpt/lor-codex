@@ -1,10 +1,10 @@
 import { Champion } from "@/types";
 import { getConstellationMaxStars } from "@/utils/constellation";
-import OverviewTab from "./OverviewTab";
-import LevelTab from "./LevelTab";
-import DeckTab from "./DeckTab";
-import RelicTab from "./RelicTab";
-import ConstellationTab from "./ConstellationTab";
+import OverviewTab from "./details/OverviewTab";
+import LevelTab from "./details/LevelTab";
+import DeckTab from "./details/DeckTab";
+import RelicTab from "./details/RelicTab";
+import ConstellationTab from "./details/ConstellationTab";
 
 interface ChampionDetailProps {
   activeChamp: Champion | undefined;
