@@ -303,7 +303,7 @@ export default function ConstellationDesigner() {
   const selectedNode = nodes.find((n) => n.id === selectedNodeId);
 
   return (
-    <div className="min-h-screen bg-[#070b13] text-slate-100 flex flex-col font-sans select-none">
+    <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans select-none">
       <Header />
 
       <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-6 max-w-7xl mx-auto">

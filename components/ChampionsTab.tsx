@@ -16,18 +16,22 @@ import {
 // Re-export for compatibility with other pages
 export { computeNodeStarLevel };
 
-const CHAMPIONS: Champion[] = (championData.champions as any[]).map((c) => ({
-  ...c,
-  level: 1,
-  stars: 0,
-  xp: 0,
-  maxXp: 500,
-  maxLevel: 30,
-  relics: [],
-  color: "from-stone-900 via-red-950 to-slate-950",
-  goldBorder: false,
-  unlockedNodes: [],
-}));
+const CHAMPIONS: Champion[] = (championData.champions as any[]).map((c) => {
+  const { level: levelArray, ...rest } = c;
+  return {
+    level: 1,
+    stars: 0,
+    xp: 0,
+    maxXp: 500,
+    maxLevel: 50,
+    relics: [],
+    color: "from-stone-900 via-red-950 to-slate-950",
+    goldBorder: false,
+    unlockedNodes: [],
+    levelRoadmap: levelArray || [],
+    ...rest,
+  };
+});
 
 export default function ChampionsTab() {
   const [champSearch, setChampSearch] = useState("");

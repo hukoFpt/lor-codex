@@ -33,6 +33,13 @@ export interface ChampOverviewData {
   difficulty: "Easy" | "Medium" | "Hard";
 }
 
+export interface LevelMilestone {
+  level: number;
+  xpNeeded: number;
+  title: string;
+  reward: string;
+}
+
 export interface Champion {
   id: string;
   name: string;
@@ -51,6 +58,7 @@ export interface Champion {
   constellation: ChampionConstellation;
   deck?: { name: string; cost: number; type: string; rarity: string }[];
   unlockedNodes?: string[];
+  levelRoadmap?: LevelMilestone[];
 }
 
 export interface Relic {

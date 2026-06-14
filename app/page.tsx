@@ -10,7 +10,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"champions" | "inventory" | "adventures">("champions");
 
   return (
-    <div className="min-h-screen bg-[#070b13] text-slate-100 flex flex-col font-sans select-none selection:bg-amber-600/30 selection:text-amber-200">
+    <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans select-none selection:bg-amber-600/30 selection:text-amber-200">
 
       {/* Dynamic Background Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-600/5 rounded-full blur-[120px] pointer-events-none -z-10" />
@@ -81,7 +81,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-[#050810] py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© 2026 Runeterra Monitor. All rights reserved. For user monitor purposes.</p>
+          <p>© 2026 Runeterra Codex. All rights reserved. Progress tracking database.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-[#e5c17d]">API Docs</a>
             <a href="#" className="hover:text-[#e5c17d]">Settings</a>

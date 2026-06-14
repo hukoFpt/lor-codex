@@ -328,7 +328,165 @@
             "to": "celestial_insight"
           }
         ]
-      }
+      },
+      "level": [
+        {
+          "level": 1,
+          "xpNeeded": 0,
+          "title": "Deck Upgrade 1 + Health",
+          "reward": "First Relic slot unlocked.\n20 Starting Nexus health."
+        },
+        {
+          "level": 2,
+          "xpNeeded": 50,
+          "title": "Deck Upgrade 1 + Health",
+          "reward": "Steadfast Elkin starts with Giant's Belt.\n25 Starting Nexus health."
+        },
+        {
+          "level": 3,
+          "xpNeeded": 100,
+          "title": "Deck Upgrade 2",
+          "reward": "Keeper of the Box starts with Pickaxe."
+        },
+        {
+          "level": 4,
+          "xpNeeded": 150,
+          "title": "Health",
+          "reward": "30 Starting Nexus health."
+        },
+        {
+          "level": 5,
+          "xpNeeded": 200,
+          "title": "Support Upgrade 1",
+          "reward": "Support champs have a random Common item."
+        },
+        {
+          "level": 6,
+          "xpNeeded": 300,
+          "title": "Deck Upgrade 3 + Rare Chance",
+          "reward": "Blooming Cultist starts with Studded Leather.\n+5% to find Rare items and powers."
+        },
+        {
+          "level": 7,
+          "xpNeeded": 450,
+          "title": "+1 Revive",
+          "reward": "Begin every adventure with 1 Revive Token for a second chance on a lost combat."
+        },
+        {
+          "level": 8,
+          "xpNeeded": 500,
+          "title": "Rare Relic Slot 1 + Epic Chance",
+          "reward": "You can equip a Rare relic to your relic slot.\n+2.5% to find Epic items and powers."
+        },
+        {
+          "level": 9,
+          "xpNeeded": 560,
+          "title": "Deck Upgrade 4",
+          "reward": "The Darkin Aegis starts with Studded Leather."
+        },
+        {
+          "level": 10,
+          "xpNeeded": 670,
+          "title": "Regen + Legendary Chance",
+          "reward": "+2 Nexus Health Regen.\n1% to find Legendary powers."
+        },
+        {
+          "level": 11,
+          "xpNeeded": 800,
+          "title": "Support Upgrade 2",
+          "reward": "Support champs have a random Rare item."
+        },
+        {
+          "level": 12,
+          "xpNeeded": 930,
+          "title": "Deck Upgrade 5",
+          "reward": "Forsaken Baccai starts with Chain Vest."
+        },
+        {
+          "level": 13,
+          "xpNeeded": 1070,
+          "title": "Common Relic Slot 2",
+          "reward": "You can equip an additional Common relic to your Champion."
+        },
+        {
+          "level": 14,
+          "xpNeeded": 1210,
+          "title": "First Reward Upgrade 1 + Rare Chance",
+          "reward": "Your first combat reward includes Common items.\n+10% to find Rare items and powers."
+        },
+        {
+          "level": 15,
+          "xpNeeded": 1360,
+          "title": "Deck Upgrade 6",
+          "reward": "The Darkin Staff starts with Phage."
+        },
+        {
+          "level": 16,
+          "xpNeeded": 1520,
+          "title": "Health + Epic Chance",
+          "reward": "35 Starting Nexus health.\n+5% to find Epic items and powers."
+        },
+        {
+          "level": 17,
+          "xpNeeded": 1690,
+          "title": "Support Upgrade 3",
+          "reward": "Support cards have Common items."
+        },
+        {
+          "level": 18,
+          "xpNeeded": 1860,
+          "title": "Deck Upgrade 7 + Legendary Chance",
+          "reward": "The Violent Dischord starts with Hero's Horn.\n2% to find Legendary powers."
+        },
+        {
+          "level": 19,
+          "xpNeeded": 2040,
+          "title": "Rare Relic Slot 2",
+          "reward": "You can equip a Rare relic to your second relic slot."
+        },
+        {
+          "level": 20,
+          "xpNeeded": 2220,
+          "title": "Heroes' Welcome",
+          "reward": "Game Start: Draw a champion."
+        },
+        {
+          "level": 21,
+          "xpNeeded": 2410,
+          "title": "Deck Upgrade 8",
+          "reward": "Furious Wielder starts with Ardent Censer."
+        },
+        {
+          "level": 22,
+          "xpNeeded": 2610,
+          "title": "Regen + Rare Chance",
+          "reward": "+2 Nexus Health Regen.\n+15% to find Rare items and powers."
+        },
+        {
+          "level": 23,
+          "xpNeeded": 2810,
+          "title": "Support Upgrade 4",
+          "reward": "Support cards have Rare items."
+        },
+        {
+          "level": 24,
+          "xpNeeded": 3020,
+          "title": "Deck Upgrade 9 + Epic Chance",
+          "reward": "The Violent Dischord starts with Poro Snax.\n+7.5% to find Epic items and powers."
+        },
+        {
+          "level": 25,
+          "xpNeeded": 3230,
+          "title": "Common Relic Slot 3",
+          "reward": "You can equip an additional Common relic to your Champion."
+        },
+        {
+          "level": 26,
+          "xpNeeded": 3450,
+          "title": "First Reward Upgrade 2 + Legendary Chance",
+          "reward": "Your first combat reward includes Rare items.\n+3% to find Legendary powers."
+        }
+      ]
     }
   ]
 }

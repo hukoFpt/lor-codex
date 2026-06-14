@@ -1,10 +1,11 @@
 import { Champion } from "@/types";
 import { getConstellationMaxStars } from "@/utils/constellation";
-import OverviewTab from "./details/OverviewTab";
+import OverviewTab from "./details/overview/OverviewTab";
 import LevelTab from "./details/LevelTab";
 import DeckTab from "./details/DeckTab";
 import RelicTab from "./details/RelicTab";
 import ConstellationTab from "./details/ConstellationTab";
+import { motion } from "framer-motion";
 
 interface ChampionDetailProps {
   activeChamp: Champion | undefined;
@@ -137,18 +138,25 @@ export default function ChampionDetail({
                 <button
                   key={tab}
                   onClick={() => setActiveDetailTab(tab)}
-                  className={`pb-2.5 text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap cursor-pointer ${activeDetailTab === tab
-                    ? "border-[#c29d53] text-[#e5c17d]"
-                    : "border-transparent text-slate-500 hover:text-slate-350"
+                  className={`relative pb-2.5 text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${activeDetailTab === tab
+                    ? "text-[#e5c17d]"
+                    : "text-slate-500 hover:text-slate-350"
                     }`}
                 >
-                  {tab === "level" ? "Champion Level" : tab === "deck" ? "Starting Deck" : tab === "relic" ? "Relic" : tab}
+                  <span>{tab === "level" ? "Champion Level" : tab === "deck" ? "Starting Deck" : tab === "relic" ? "Relic" : tab}</span>
+                  {activeDetailTab === tab && (
+                    <motion.span
+                      layoutId="activeDetailTabIndicator"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[3px] bg-[#c29d53] rounded-full shadow-[0_0_8px_#c29d53] opacity-90"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
                 </button>
               ))}
             </div>
 
             {/* Tab Content */}
-            <div className="z-10 mt-1 flex-1 overflow-y-auto pr-1">
+            <div className="z-10 mt-1 flex-1 pr-1">
               {activeDetailTab === "overview" && (
                 <OverviewTab champion={activeChamp} />
               )}
@@ -164,7 +172,11 @@ export default function ChampionDetail({
                 />
               )}
               {activeDetailTab === "level" && (
-                <LevelTab level={activeChamp.level} />
+                <LevelTab
+                  level={activeChamp.level}
+                  levelRoadmap={activeChamp.levelRoadmap}
+                  maxLevel={activeChamp.maxLevel}
+                />
               )}
               {activeDetailTab === "deck" && (
                 <DeckTab champion={activeChamp} />
