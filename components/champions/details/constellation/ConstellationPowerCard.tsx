@@ -29,6 +29,15 @@ export default function ConstellationPowerCard({
     : isPurple
       ? "bg-purple-500"
       : "bg-blue-500";
+  const iconBorderColorClass = isUnlocked
+    ? node.upgradeType === "Star Power"
+      ? "border-[#e5c17d]"
+      : isPurple
+        ? "border-purple-400"
+        : "border-blue-400"
+    : isSelected
+      ? "border-slate-300"
+      : "border-slate-800";
 
   return (
     <div
@@ -75,7 +84,7 @@ export default function ConstellationPowerCard({
       {/* Icon + Description */}
       <div className="flex gap-3 items-start">
         {node.imageUrl && (
-          <div className="w-10 h-10 rounded-lg overflow-hidden border border-slate-850 bg-slate-950 flex-shrink-0">
+          <div className={`w-10 h-10 rounded-full overflow-hidden border ${iconBorderColorClass} bg-slate-950 flex-shrink-0`}>
             <img
               src={node.imageUrl}
               alt={node.title}

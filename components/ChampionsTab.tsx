@@ -150,13 +150,7 @@ export default function ChampionsTab() {
 
   // Reset selected constellation node when champion selection changes
   useEffect(() => {
-    if (activeChamp) {
-      const config = activeChamp.constellation;
-      if (config && config.nodes.length > 0) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setSelectedNodeId(config.nodes[0].id);
-      }
-    }
+    setSelectedNodeId("");
   }, [activeChamp]);
 
   return (
