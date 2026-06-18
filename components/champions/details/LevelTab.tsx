@@ -135,7 +135,7 @@ export default function LevelTab({ level, levelRoadmap = [], maxLevel }: LevelTa
 
   const perksLeft = [
     {
-      label: "Nexus Health",
+      label: "Starting Health",
       value: `${nexusHealth} HP`,
       isActive: true,
       icon: (
@@ -212,7 +212,7 @@ export default function LevelTab({ level, levelRoadmap = [], maxLevel }: LevelTa
       )
     },
     {
-      label: "Start Draw",
+      label: "Starting Draw",
       value: hasChampionDraw ? "Champion" : "Normal",
       isActive: true,
       icon: (
