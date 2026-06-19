@@ -40,6 +40,17 @@ export interface LevelMilestone {
   reward: string;
 }
 
+export interface PerkCurves {
+  health?: Record<string, number>;
+  regen?: Record<string, number>;
+  gold?: Record<string, number>;
+  revives?: Record<string, number>;
+  rareChance?: Record<string, number>;
+  epicChance?: Record<string, number>;
+  legendaryChance?: Record<string, number>;
+  startingDraw?: Record<string, number>;
+}
+
 export interface Champion {
   id: string;
   name: string;
@@ -59,6 +70,7 @@ export interface Champion {
   deck?: { name: string; cost: number; type: string; rarity: string }[];
   unlockedNodes?: string[];
   levelRoadmap?: LevelMilestone[];
+  perkCurves?: PerkCurves;
 }
 
 export interface Relic {

@@ -485,8 +485,214 @@
           "xpNeeded": 3450,
           "title": "First Reward Upgrade 2 + Legendary Chance",
           "reward": "Your first combat reward includes Rare items.\n+3% to find Legendary powers."
+        },
+        {
+          "level": 27,
+          "xpNeeded": 3670,
+          "title": "Deck Upgrade 10",
+          "reward": "Furious Wielder starts with Mana Potion."
+        },
+        {
+          "level": 28,
+          "xpNeeded": 3900,
+          "title": "Health",
+          "reward": "40 Starting Nexus health."
+        },
+        {
+          "level": 29,
+          "xpNeeded": 4140,
+          "title": "Support Upgrade 5",
+          "reward": "Support champs have a random Epic item."
+        },
+        {
+          "level": 30,
+          "xpNeeded": 4370,
+          "title": "Rare Relic Slot 3",
+          "reward": "You can equip a Rare relic to your third relic slot."
+        },
+        {
+          "level": 31,
+          "xpNeeded": 5850,
+          "title": "Health",
+          "reward": "+2 Nexus Health."
+        },
+        {
+          "level": 32,
+          "xpNeeded": 6930,
+          "title": "Gold",
+          "reward": "+30 Starting Gold."
+        },
+        {
+          "level": 33,
+          "xpNeeded": 8140,
+          "title": "Rare Chance",
+          "reward": "+20% to find Rare items and powers."
+        },
+        {
+          "level": 34,
+          "xpNeeded": 9680,
+          "title": "Regen",
+          "reward": "+2 Regen."
+        },
+        {
+          "level": 35,
+          "xpNeeded": 11240,
+          "title": "Health",
+          "reward": "+2 Nexus Health."
+        },
+        {
+          "level": 36,
+          "xpNeeded": 12860,
+          "title": "Epic Chance",
+          "reward": "+10% to find Epic items and powers."
+        },
+        {
+          "level": 37,
+          "xpNeeded": 14620,
+          "title": "Gold",
+          "reward": "+30 Starting Gold."
+        },
+        {
+          "level": 38,
+          "xpNeeded": 16050,
+          "title": "Rare Chance",
+          "reward": "+25% to find Rare items and powers."
+        },
+        {
+          "level": 39,
+          "xpNeeded": 18770,
+          "title": "Health",
+          "reward": "+2 Nexus Health."
+        },
+        {
+          "level": 40,
+          "xpNeeded": 21100,
+          "title": "Reroll",
+          "reward": "+1 Reroll."
+        },
+        {
+          "level": 41,
+          "xpNeeded": 23510,
+          "title": "Gold",
+          "reward": "+30 Starting Gold."
+        },
+        {
+          "level": 42,
+          "xpNeeded": 26190,
+          "title": "Legendary Chance",
+          "reward": "+4% to find Legendary powers."
+        },
+        {
+          "level": 43,
+          "xpNeeded": 29190,
+          "title": "Health",
+          "reward": "+2 Nexus Health."
+        },
+        {
+          "level": 44,
+          "xpNeeded": 32530,
+          "title": "Regen",
+          "reward": "+2 Regen."
+        },
+        {
+          "level": 45,
+          "xpNeeded": 35420,
+          "title": "Gold",
+          "reward": "+30 Starting Gold."
+        },
+        {
+          "level": 46,
+          "xpNeeded": 38070,
+          "title": "Rare Chance",
+          "reward": "+30% to find Rare items and powers."
+        },
+        {
+          "level": 47,
+          "xpNeeded": 41230,
+          "title": "Health",
+          "reward": "+2 Nexus Health."
+        },
+        {
+          "level": 48,
+          "xpNeeded": 45550,
+          "title": "Epic Chance",
+          "reward": "+12.5% to find Epic items and powers."
+        },
+        {
+          "level": 49,
+          "xpNeeded": 49690,
+          "title": "Gold",
+          "reward": "+30 Starting Gold."
+        },
+        {
+          "level": 50,
+          "xpNeeded": 54800,
+          "title": "Legendary Chance",
+          "reward": "+5% to find Legendary powers."
         }
-      ]
+      ],
+      "perkCurves": {
+        "health": {
+          "1": 20,
+          "2": 25,
+          "4": 30,
+          "16": 35,
+          "28": 40,
+          "31": 42,
+          "35": 44,
+          "39": 46,
+          "43": 48,
+          "47": 50
+        },
+        "regen": {
+          "1": 0,
+          "10": 2,
+          "22": 4,
+          "34": 6,
+          "44": 8
+        },
+        "gold": {
+          "1": 0,
+          "32": 30,
+          "37": 60,
+          "41": 90,
+          "45": 120,
+          "49": 150
+        },
+        "revives": {
+          "1": 0,
+          "7": 1
+        },
+        "rareChance": {
+          "1": 0,
+          "6": 5,
+          "14": 10,
+          "22": 15,
+          "33": 20,
+          "38": 25,
+          "46": 30
+        },
+        "epicChance": {
+          "1": 0,
+          "8": 2.5,
+          "16": 5,
+          "24": 7.5,
+          "36": 10,
+          "48": 12.5
+        },
+        "legendaryChance": {
+          "1": 0,
+          "10": 1,
+          "18": 2,
+          "26": 3,
+          "42": 4,
+          "50": 5
+        },
+        "startingDraw": {
+          "1": 0,
+          "20": 1
+        }
+      }
     }
   ]
 }

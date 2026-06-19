@@ -50,86 +50,138 @@ export default function ChampionDetail({
                   {activeChamp.name}
                 </h2>
               </div>
-              <div className="flex flex-col items-start md:items-end gap-1.5">
-                <span className="text-xs text-slate-400 font-mono">Star Power</span>
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: getConstellationMaxStars(activeChamp) }).map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-5 h-5 ${i < activeChamp.stars ? "text-[#e5c17d]" : "text-slate-800"}`}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-            </div>
+              
+              {/* Level & Star Power Container (Side-by-Side) */}
+              <div className="flex flex-row items-center gap-6 shrink-0">
+                {/* Level Gauge Semicircle */}
+                <div className="relative flex flex-col items-center justify-center w-20 h-20 shrink-0 select-none overflow-visible">
+                  <svg width="100%" height="100%" viewBox="0 0 100 100" className="overflow-visible">
+                    <defs>
+                      <linearGradient id="semicircle-progress-gradient" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#d97706" />
+                        <stop offset="100%" stopColor="#e5c17d" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M 27.66 80.74 A 38 38 0 1 1 72.66 80.74"
+                      fill="none"
+                      stroke="#131b2e"
+                      strokeWidth="7"
+                      strokeLinecap="round"
+                    />
+                    {(() => {
+                      const progress = activeChamp.maxXp > 0 ? activeChamp.xp / activeChamp.maxXp : 1;
+                      return (
+                        <motion.path
+                          d="M 27.66 80.74 A 38 38 0 1 1 72.66 80.74"
+                          fill="none"
+                          stroke="url(#semicircle-progress-gradient)"
+                          strokeWidth="7"
+                          strokeLinecap="round"
+                          strokeDasharray="191"
+                          initial={{ strokeDashoffset: 191 }}
+                          animate={{
+                            strokeDashoffset: 191 * (1 - progress),
+                            opacity: progress > 0 ? 1 : 0
+                          }}
+                          transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                        />
+                      );
+                    })()}
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
+                    <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-none mb-0.5">LVL</span>
+                    <div className="flex items-center justify-center gap-0.5">
+                      {/* Decrease Level Button (Left) */}
+                      <button
+                        onClick={() => {
+                          const val = Math.max(1, activeChamp.level - 1);
+                          updateChampionProgress(activeChamp.id, { level: val });
+                        }}
+                        disabled={activeChamp.level <= 1}
+                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center px-0.5"
+                        title="Previous Level"
+                      >
+                        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
 
-            {/* Level and XP Meter (Always Visible & Editable) */}
-            <div className="flex flex-col gap-3.5 z-10 bg-[#090d16]/30 border border-slate-900/60 p-4 rounded-xl">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-sm text-slate-400 font-bold uppercase tracking-widest font-mono">
-                    Level
-                  </span>
+                      {/* Level Input (Middle) */}
+                      <input
+                        type="number"
+                        min={1}
+                        max={activeChamp.maxLevel}
+                        value={activeChamp.level}
+                        onChange={(e) => {
+                          const val = Math.max(1, Math.min(activeChamp.maxLevel, parseInt(e.target.value) || 1));
+                          updateChampionProgress(activeChamp.id, { level: val });
+                        }}
+                        className="w-8 text-center bg-transparent border-none p-0 text-lg font-black font-mono text-[#e5c17d] focus:outline-none focus:ring-0 outline-none select-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none leading-none"
+                      />
+
+                      {/* Increase Level Button (Right) */}
+                      <button
+                        onClick={() => {
+                          const val = Math.min(activeChamp.maxLevel, activeChamp.level + 1);
+                          updateChampionProgress(activeChamp.id, { level: val });
+                        }}
+                        disabled={activeChamp.level >= activeChamp.maxLevel}
+                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center px-0.5"
+                        title="Next Level"
+                      >
+                        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* XP Details */}
+                <div className="flex flex-col justify-center gap-0.5 w-28 shrink-0">
+                  {activeChamp.maxXp > 0 ? (
+                    <>
+                      <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest font-mono">XP</span>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <input
+                          type="number"
+                          min={0}
+                          max={activeChamp.maxXp}
+                          value={activeChamp.xp}
+                          onChange={(e) => {
+                            const val = Math.max(0, Math.min(activeChamp.maxXp, parseInt(e.target.value) || 0));
+                            updateChampionProgress(activeChamp.id, { xp: val });
+                          }}
+                          className="w-14 px-1 py-0.25 text-center bg-slate-950 border border-slate-900 focus:border-[#c29d53] focus:ring-1 focus:ring-[#c29d53]/40 rounded text-xs font-mono text-slate-200 outline-none"
+                        />
+                        <span className="text-xs text-slate-400 font-mono">
+                          / {activeChamp.maxXp}
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <span className="text-xs text-emerald-400 font-bold font-mono">MAX LVL</span>
+                  )}
+                </div>
+
+                {/* Star Power */}
+                <div className="flex flex-col items-start md:items-end gap-1 shrink-0 pb-1">
+                  <span className="text-[10px] text-slate-400 font-mono">Star Power</span>
                   <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      min={1}
-                      max={activeChamp.maxLevel}
-                      value={activeChamp.level}
-                      onChange={(e) => {
-                        const val = Math.max(1, Math.min(activeChamp.maxLevel, parseInt(e.target.value) || 1));
-                        updateChampionProgress(activeChamp.id, { level: val });
-                      }}
-                      className="w-16 px-2.5 py-1 text-center bg-slate-950 border border-slate-850 focus:border-[#c29d53] focus:ring-1 focus:ring-[#c29d53]/50 rounded-lg text-lg font-black font-mono text-[#e5c17d] outline-none"
-                    />
-                    <span className="text-xs text-slate-550 font-mono pl-1">
-                      / {activeChamp.maxLevel}
-                    </span>
+                    {Array.from({ length: getConstellationMaxStars(activeChamp) }).map((_, i) => (
+                      <svg
+                        key={i}
+                        className={`w-5 h-5 ${i < activeChamp.stars ? "text-[#e5c17d]" : "text-slate-800"}`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
                   </div>
                 </div>
-
-                {activeChamp.maxXp > 0 ? (
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider font-mono">Current XP:</span>
-                    <input
-                      type="number"
-                      min={0}
-                      max={activeChamp.maxXp}
-                      value={activeChamp.xp}
-                      onChange={(e) => {
-                        const val = Math.max(0, Math.min(activeChamp.maxXp, parseInt(e.target.value) || 0));
-                        updateChampionProgress(activeChamp.id, { xp: val });
-                      }}
-                      className="w-20 px-2 py-1 bg-slate-950 border border-slate-850 focus:border-[#c29d53] focus:ring-1 focus:ring-[#c29d53]/50 rounded-lg text-xs font-mono text-slate-200 outline-none"
-                    />
-                    <span className="text-xs text-slate-550 font-mono">
-                      / {activeChamp.maxXp} XP
-                    </span>
-                  </div>
-                ) : (
-                  <span className="text-xs text-emerald-400 font-bold uppercase tracking-widest font-mono flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    MAX LEVEL Reached
-                  </span>
-                )}
               </div>
-
-              {activeChamp.maxXp > 0 ? (
-                <div className="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-900">
-                  <div
-                    className="bg-gradient-to-r from-amber-600 to-[#e5c17d] h-full rounded-full"
-                    style={{ width: `${(activeChamp.xp / activeChamp.maxXp) * 100}%` }}
-                  />
-                </div>
-              ) : (
-                <div className="w-full bg-emerald-600/20 border border-emerald-550/20 rounded-full h-2">
-                  <div className="bg-emerald-450 h-full rounded-full w-full shadow-[0_0_8px_rgba(52,211,153,0.4)]" />
-                </div>
-              )}
             </div>
 
             {/* Detail Tabs */}
@@ -173,9 +225,7 @@ export default function ChampionDetail({
               )}
               {activeDetailTab === "level" && (
                 <LevelTab
-                  level={activeChamp.level}
-                  levelRoadmap={activeChamp.levelRoadmap}
-                  maxLevel={activeChamp.maxLevel}
+                  champion={activeChamp}
                 />
               )}
               {activeDetailTab === "deck" && (

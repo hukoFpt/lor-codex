@@ -93,7 +93,7 @@ export default function InventoryTab() {
   return (
     <div className="flex flex-col gap-8">
       {/* Filter Toggle */}
-      <div className="flex gap-2 bg-[#090d16] p-1 border border-slate-850 rounded-xl w-fit self-center">
+      <div className="flex gap-2 bg-[#090d16] p-1 border border-slate-800 rounded-xl w-fit self-center">
         <button
           onClick={() => setInventoryFilter("all")}
           className={`px-5 py-2.5 rounded-lg text-xs font-semibold tracking-wide uppercase ${

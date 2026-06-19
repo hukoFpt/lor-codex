@@ -55,7 +55,8 @@ export default function ChampionsTab() {
             if (!userState) return c;
             const level = userState.level !== undefined ? userState.level : c.level;
             const maxLevel = c.maxLevel || 30;
-            const nextMaxXp = level >= maxLevel ? 0 : 500 + (level - 1) * 100;
+            const nextMilestone = (c.levelRoadmap || []).find(m => m.level === level + 1);
+            const nextMaxXp = level >= maxLevel ? 0 : (nextMilestone ? nextMilestone.xpNeeded : 500 + (level - 1) * 100);
             const xp = userState.xp !== undefined ? Math.min(userState.xp, nextMaxXp) : (level >= maxLevel ? 0 : Math.min(c.xp, nextMaxXp));
             return {
               ...c,
@@ -82,7 +83,8 @@ export default function ChampionsTab() {
         if (c.id === id) {
           const level = updates.level !== undefined ? updates.level : c.level;
           const maxLevel = c.maxLevel || 30;
-          const nextMaxXp = level >= maxLevel ? 0 : 500 + (level - 1) * 100;
+          const nextMilestone = (c.levelRoadmap || []).find(m => m.level === level + 1);
+          const nextMaxXp = level >= maxLevel ? 0 : (nextMilestone ? nextMilestone.xpNeeded : 500 + (level - 1) * 100);
           const xp = updates.xp !== undefined ? Math.min(updates.xp, nextMaxXp) : (updates.level !== undefined ? (level >= maxLevel ? 0 : Math.min(c.xp, nextMaxXp)) : c.xp);
           return {
             ...c,

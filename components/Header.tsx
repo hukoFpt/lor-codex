@@ -49,6 +49,9 @@ export default function Header() {
           <Link href="/constellation-designer" className="text-sm font-semibold text-slate-350 hover:text-[#e5c17d] tracking-wide transition-colors">
             Constellation Designer
           </Link>
+          <Link href="/level-designer" className="text-sm font-semibold text-slate-350 hover:text-[#e5c17d] tracking-wide transition-colors">
+            Level Designer
+          </Link>
         </div>
 
         {/* Quick Profile Summary */}

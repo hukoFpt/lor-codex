@@ -14,6 +14,37 @@ interface ChampionListProps {
   regions: string[];
 }
 
+const getRegionIconPath = (regionName: string) => {
+  switch (regionName) {
+    case "Demacia":
+      return "/icons/region/120px-Demacia_LoR_Region.png";
+    case "Freljord":
+      return "/icons/region/120px-Freljord_LoR_Region.png";
+    case "Ionia":
+      return "/icons/region/120px-Ionia_LoR_Region.png";
+    case "Noxus":
+      return "/icons/region/120px-Noxus_LoR_Region.png";
+    case "Piltover & Zaun":
+    case "Piltover":
+    case "Zaun":
+      return "/icons/region/120px-Piltover_Zaun_LoR_Region.png";
+    case "Runeterra":
+      return "/icons/region/120px-Runeterra_LoR_Region.png";
+    case "Shadow Isles":
+      return "/icons/region/120px-Shadow_Isles_LoR_Region.png";
+    case "Shurima":
+      return "/icons/region/120px-Shurima_LoR_Region.png";
+    case "Targon":
+      return "/icons/region/120px-Targon_LoR_Region.png";
+    case "Bandle City":
+      return "/icons/region/Bandle_City_LoR_Region.png";
+    case "Bilgewater":
+      return "/icons/region/Bilgewater_LoR_Region.png";
+    default:
+      return null;
+  }
+};
+
 export default function ChampionList({
   filteredChampions,
   activeChamp,
@@ -74,18 +105,41 @@ export default function ChampionList({
             <div className="flex flex-col gap-1.5">
               <span className="text-[10px] text-slate-400 uppercase tracking-wider font-mono font-bold">Region:</span>
               <div className="flex flex-wrap gap-1.5">
-                {regions.map((reg) => (
-                  <button
-                    key={reg}
-                    onClick={() => setSelectedRegion(reg)}
-                    className={`px-2.5 py-1.5 rounded-lg text-[11px] font-medium border transition-colors ${selectedRegion === reg
-                      ? "bg-[#c29d53]/10 text-[#e5c17d] border-[#c29d53]/50"
-                      : "bg-slate-950/40 text-slate-400 border-slate-800 hover:text-slate-200"
-                      }`}
-                  >
-                    {reg}
-                  </button>
-                ))}
+                {regions.map((reg) => {
+                  const iconPath = getRegionIconPath(reg);
+                  if (iconPath) {
+                    return (
+                      <button
+                        key={reg}
+                        onClick={() => setSelectedRegion(reg)}
+                        className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer ${selectedRegion === reg
+                          ? "bg-[#c29d53]/15 border-[#c29d53] shadow-[0_0_10px_rgba(194,157,83,0.25)]"
+                          : "bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/40"
+                          }`}
+                        title={reg}
+                      >
+                        <img
+                          src={iconPath}
+                          alt={reg}
+                          className={`w-6 h-6 object-contain transition-all duration-200 ${selectedRegion === reg ? "opacity-100 scale-110 drop-shadow-[0_0_3px_#c29d53]" : "opacity-60 hover:opacity-90"}`}
+                        />
+                      </button>
+                    );
+                  }
+                  return (
+                    <button
+                      key={reg}
+                      onClick={() => setSelectedRegion(reg)}
+                      className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all duration-200 cursor-pointer ${selectedRegion === reg
+                        ? "bg-[#c29d53]/15 border-[#c29d53] shadow-[0_0_10px_rgba(194,157,83,0.25)] text-[#e5c17d]"
+                        : "bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/40 text-slate-400 hover:text-slate-200"
+                        }`}
+                      title="All Regions"
+                    >
+                      <span className="text-[10px] font-mono font-black uppercase tracking-tighter">ALL</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </>
@@ -166,8 +220,7 @@ export default function ChampionList({
                         {Array.from({ length: getConstellationMaxStars(champ) }).map((_, i) => (
                           <svg
                             key={i}
-                            className={`w-2.5 h-2.5 ${i < champ.stars ? "text-[#e5c17d]" : "text-slate-850"
-                              }`}
+                            className={`w-2.5 h-2.5 ${i < champ.stars ? "text-[#e5c17d]" : "text-slate-800"}`}
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
