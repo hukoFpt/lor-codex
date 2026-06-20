@@ -61,10 +61,9 @@ export interface Champion {
   maxXp: number;
   maxLevel: number;
   relics: string[];
-  color: string;
   goldBorder: boolean;
   backgroundImage?: string;
-  backgroundPosition?: string;
+  portraitImage?: string;
   overview: ChampOverviewData;
   constellation: ChampionConstellation;
   deck?: { name: string; cost: number; type: string; rarity: string }[];

@@ -17,7 +17,6 @@ import {
 export { computeNodeStarLevel };
 
 const CHAMPIONS: Champion[] = (championData.champions as any[]).map((c) => {
-  const { level: levelArray, ...rest } = c;
   return {
     level: 1,
     stars: 0,
@@ -25,11 +24,19 @@ const CHAMPIONS: Champion[] = (championData.champions as any[]).map((c) => {
     maxXp: 500,
     maxLevel: 50,
     relics: [],
-    color: "from-stone-900 via-red-950 to-slate-950",
     goldBorder: false,
     unlockedNodes: [],
-    levelRoadmap: levelArray || [],
-    ...rest,
+    levelRoadmap: [],
+    overview: {
+      description: "",
+      playStyle: "",
+      difficulty: "Medium"
+    },
+    constellation: {
+      nodes: [],
+      connections: []
+    },
+    ...c,
   };
 });
 
@@ -42,6 +49,10 @@ export default function ChampionsTab() {
   const [championsList, setChampionsList] = useState<Champion[]>(CHAMPIONS);
   const [isListCollapsed, setIsListCollapsed] = useState(false);
   const [activeConstellationSubTab, setActiveConstellationSubTab] = useState<"star" | "bonus">("star");
+
+  // Dynamic Details caching and loading states
+  const [detailsCache, setDetailsCache] = useState<Record<string, any>>({});
+  const [loadingChampId, setLoadingChampId] = useState<string | null>(null);
 
   // Initialize progress from localStorage client-side
   useEffect(() => {
@@ -76,6 +87,62 @@ export default function ChampionsTab() {
       }
     }
   }, []);
+
+  // Effect to fetch detailed data for selected champion if not cached
+  useEffect(() => {
+    if (!selectedChampId) return;
+    if (detailsCache[selectedChampId]) return;
+
+    let active = true;
+    setLoadingChampId(selectedChampId);
+
+    fetch(`/api/champions/${selectedChampId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch detailed codex entry");
+        return res.json();
+      })
+      .then((data) => {
+        if (active) {
+          setDetailsCache((prev) => ({ ...prev, [selectedChampId]: data }));
+          setLoadingChampId(null);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        if (active) {
+          setLoadingChampId(null);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [selectedChampId, detailsCache]);
+
+  // Update static details once loaded from the API
+  useEffect(() => {
+    setChampionsList((prev) =>
+      prev.map((c) => {
+        const details = detailsCache[c.id];
+        if (details && details.level && (!c.levelRoadmap || c.levelRoadmap.length === 0)) {
+          const level = c.level;
+          const maxLevel = c.maxLevel || 30;
+          const roadmap = details.level;
+          const nextMilestone = roadmap.find((m: any) => m.level === level + 1);
+          const nextMaxXp = level >= maxLevel ? 0 : (nextMilestone ? nextMilestone.xpNeeded : 500 + (level - 1) * 100);
+          return {
+            ...c,
+            levelRoadmap: roadmap,
+            maxXp: nextMaxXp,
+            constellation: details.constellation || c.constellation,
+            overview: details.overview || c.overview,
+            perkCurves: details.perkCurves || c.perkCurves,
+          };
+        }
+        return c;
+      })
+    );
+  }, [detailsCache]);
 
   const updateChampionProgress = (id: string, updates: Partial<Champion>) => {
     setChampionsList((prev) => {
@@ -185,6 +252,7 @@ export default function ChampionsTab() {
           setActiveConstellationSubTab={setActiveConstellationSubTab}
           activeDetailTab={activeDetailTab}
           setActiveDetailTab={setActiveDetailTab}
+          isLoading={loadingChampId === selectedChampId || !detailsCache[selectedChampId]}
         />
       </div>
     </div>

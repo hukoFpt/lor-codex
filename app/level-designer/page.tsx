@@ -8,7 +8,6 @@ import { Champion, LevelMilestone, PerkCurves } from "@/types";
 
 export default function LevelDesigner() {
   const champions: Champion[] = (championData.champions as any[]).map((c) => {
-    const { level: levelArray, ...rest } = c;
     return {
       level: 1,
       stars: 0,
@@ -16,11 +15,10 @@ export default function LevelDesigner() {
       maxXp: 500,
       maxLevel: 50,
       relics: [],
-      color: "from-stone-900 via-red-950 to-slate-950",
       goldBorder: false,
       unlockedNodes: [],
-      levelRoadmap: levelArray || [],
-      ...rest,
+      levelRoadmap: [],
+      ...c,
     };
   });
 
@@ -42,28 +40,59 @@ export default function LevelDesigner() {
   // Initialize/clone milestones from template
   useEffect(() => {
     const baseChamp = champions.find(c => c.id === selectedBaseId);
-    if (baseChamp) {
-      // Create a copy of milestones
-      const cloned = JSON.parse(JSON.stringify(baseChamp.levelRoadmap || [])) as LevelMilestone[];
-      
-      // Ensure we have milestones up to level 50
-      const fullList: LevelMilestone[] = [];
-      for (let l = 1; l <= 50; l++) {
-        const existing = cloned.find(m => m.level === l);
-        if (existing) {
-          fullList.push(existing);
-        } else {
-          fullList.push({
-            level: l,
-            xpNeeded: 0,
-            title: `Level ${l} Upgrade`,
-            reward: `Upgrade description for level ${l}.`
-          });
+    if (!baseChamp) return;
+
+    let active = true;
+
+    // Fetch details dynamically to clone real level progression roadmap
+    fetch(`/api/champions/${selectedBaseId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load template details");
+        return res.json();
+      })
+      .then((data) => {
+        if (!active) return;
+        const cloned = JSON.parse(JSON.stringify(data.level || [])) as LevelMilestone[];
+        
+        // Ensure we have milestones up to level 50
+        const fullList: LevelMilestone[] = [];
+        for (let l = 1; l <= 50; l++) {
+          const existing = cloned.find(m => m.level === l);
+          if (existing) {
+            fullList.push(existing);
+          } else {
+            fullList.push({
+              level: l,
+              xpNeeded: 0,
+              title: `Level ${l} Upgrade`,
+              reward: `Upgrade description for level ${l}.`
+            });
+          }
         }
-      }
-      setMilestones(fullList);
-      setChampionName(`Custom ${baseChamp.name}`);
-    }
+        setMilestones(fullList);
+        setChampionName(`Custom ${baseChamp.name}`);
+      })
+      .catch((err) => {
+        console.error(err);
+        // Fallback to blank milestones if fetch fails
+        if (active) {
+          const fullList: LevelMilestone[] = [];
+          for (let l = 1; l <= 50; l++) {
+            fullList.push({
+              level: l,
+              xpNeeded: 0,
+              title: `Level ${l} Upgrade`,
+              reward: `Upgrade description for level ${l}.`
+            });
+          }
+          setMilestones(fullList);
+          setChampionName(`Custom ${baseChamp.name}`);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
   }, [selectedBaseId]);
 
   // Run dynamic perk curve generator whenever milestones change

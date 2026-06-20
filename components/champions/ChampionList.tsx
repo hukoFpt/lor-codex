@@ -162,41 +162,44 @@ export default function ChampionList({
                     setSelectedChampId(champ.id);
                   }
                 }}
-                className={`w-full text-left rounded-xl border flex items-center group cursor-pointer relative overflow-hidden transition-all duration-300 ${isListCollapsed ? "p-2 justify-center" : "p-3.5"
-                  } ${isSelected
+                className={`w-full h-[74px] text-left rounded-xl border-2 flex items-center group cursor-pointer relative overflow-hidden transition-all duration-300 ${
+                  isListCollapsed ? "p-1.5 justify-center" : "p-3"
+                } ${
+                  isSelected
                     ? "bg-gradient-to-r from-slate-900 to-slate-950 border-[#c29d53] shadow-[0_0_12px_rgba(194,157,83,0.08)] text-[#e5c17d]"
-                    : "bg-[#0b0f1a]/60 border-slate-900 text-slate-300 hover:bg-[#0b0f1a] hover:border-slate-800 hover:text-slate-100"
-                  }`}
+                    : "bg-[#0b0f1a]/60 border-slate-900/60 text-slate-300 hover:bg-[#0b0f1a] hover:border-slate-800 hover:text-slate-100"
+                }`}
                 title={isListCollapsed ? champ.name : undefined}
               >
                 {/* Faded Background Art */}
                 {!isListCollapsed && champ.backgroundImage && (
                   <div
-                    className="absolute right-0 top-0 bottom-0 w-2/3 pointer-events-none opacity-80 mix-blend-lighten z-0 bg-cover transition-opacity group-hover:opacity-75"
+                    className="absolute top-0 bottom-0 right-0 w-[380px] pointer-events-none opacity-80 mix-blend-lighten z-0 bg-cover transition-opacity group-hover:opacity-75"
                     style={{
                       backgroundImage: `url(${champ.backgroundImage})`,
-                      backgroundPosition: champ.backgroundPosition || 'right top',
-                      maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 100%)',
-                      WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 100%)'
+                      backgroundPosition: 'right center',
+                      maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)',
+                      WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)'
                     }}
                   />
                 )}
 
                 {isListCollapsed ? (
                   <div className="relative z-10 flex items-center justify-center">
-                    {champ.backgroundImage ? (
-                      <div className={`w-11 h-11 rounded-full overflow-hidden border flex-shrink-0 relative transition-colors ${isSelected ? "border-[#c29d53]" : "border-slate-800 group-hover:border-slate-700"
-                        }`}>
+                    {champ.portraitImage || champ.backgroundImage ? (
+                      <div className={`w-11 h-11 rounded-full border-2 bg-slate-950 flex-shrink-0 relative transition-all duration-300 ${
+                        isSelected ? "border-[#c29d53] scale-105" : "border-slate-800 group-hover:border-slate-700"
+                      }`}>
                         <div
-                          className="absolute inset-0 bg-cover scale-[2.2] origin-[50%_25%]"
+                          className={`absolute inset-0.5 rounded-full overflow-hidden bg-cover ${champ.portraitImage ? "scale-100" : "scale-[2.2] origin-[50%_25%]"}`}
                           style={{
-                            backgroundImage: `url(${champ.backgroundImage})`,
-                            backgroundPosition: champ.backgroundPosition || 'center',
+                            backgroundImage: `url(${champ.portraitImage || champ.backgroundImage})`,
+                            backgroundPosition: 'center',
                           }}
                         />
                       </div>
                     ) : (
-                      <div className={`w-11 h-11 rounded-full bg-gradient-to-tr ${champ.color} flex items-center justify-center border transition-colors ${isSelected ? "border-[#c29d53]" : "border-slate-800 group-hover:border-slate-700"
+                      <div className={`w-11 h-11 rounded-full bg-gradient-to-tr from-slate-900 via-slate-950 to-black flex items-center justify-center border transition-colors ${isSelected ? "border-[#c29d53]" : "border-slate-800 group-hover:border-slate-700"
                         }`}>
                         <span className="text-sm font-bold text-slate-100 font-mono">
                           {champ.level}
@@ -206,8 +209,8 @@ export default function ChampionList({
                   </div>
                 ) : (
                   <div className="flex items-center gap-3 relative z-10">
-                    {/* Simplified avatar/emblem block showing level number */}
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-tr ${champ.color} flex items-center justify-center border ${isSelected ? "border-[#c29d53]/60" : "border-slate-800"
+                    {/* Level emblem block */}
+                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-tr from-slate-900 to-slate-950 flex items-center justify-center border flex-shrink-0 ${isSelected ? "border-[#c29d53]/60" : "border-slate-800"
                       }`}>
                       <span className="text-md font-bold text-slate-100 font-mono">
                         {champ.level}

@@ -18,6 +18,7 @@ interface ChampionDetailProps {
   setActiveConstellationSubTab: (tab: "star" | "bonus") => void;
   activeDetailTab: "overview" | "constellation" | "level" | "deck" | "relic";
   setActiveDetailTab: (tab: "overview" | "constellation" | "level" | "deck" | "relic") => void;
+  isLoading?: boolean;
 }
 
 export default function ChampionDetail({
@@ -30,12 +31,21 @@ export default function ChampionDetail({
   activeConstellationSubTab,
   setActiveConstellationSubTab,
   activeDetailTab,
-  setActiveDetailTab
+  setActiveDetailTab,
+  isLoading
 }: ChampionDetailProps) {
   return (
     <div className={`w-full transition-all duration-300 ${isListCollapsed ? "flex-1" : "md:w-2/3"} h-auto md:h-auto flex flex-col`}>
-      {activeChamp ? (
-        <div className={`rounded-2xl bg-gradient-to-b ${activeChamp.color} p-0.5 h-auto flex flex-col`}>
+      {isLoading ? (
+        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 min-h-[450px] flex flex-col">
+          <div className="bg-[#0b0f1a]/95 rounded-2xl w-full flex-1 min-h-[446px] flex flex-col items-center justify-center gap-4 relative p-6 md:p-8">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 rounded-2xl" />
+            <div className="w-12 h-12 border-4 border-dashed border-[#c29d53] rounded-full animate-spin z-10" />
+            <p className="text-sm font-bold text-slate-400 font-mono tracking-wider animate-pulse z-10">Syncing Champion Codex...</p>
+          </div>
+        </div>
+      ) : activeChamp ? (
+        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 h-auto flex flex-col">
           <div className="bg-[#0b0f1a]/95 rounded-2xl p-6 md:p-8 flex flex-col gap-5 relative h-auto">
             {/* Grid background mesh overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 rounded-2xl" />

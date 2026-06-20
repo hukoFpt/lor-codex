@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import Link from "next/link";
 
-type FrameType = "banner" | "node";
+type FrameType = "banner" | "portrait";
 
 interface ImageDimensions {
   renderedWidth: number;
@@ -24,6 +24,7 @@ export default function AssetToolkit() {
   
   // Drag state tracking for moving the frame
   const [isDraggingFrame, setIsDraggingFrame] = useState(false);
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
   const dragStart = useRef({ x: 0, y: 0 });
   const lastFramePos = useRef({ x: 0, y: 0 });
 
@@ -97,6 +98,39 @@ export default function AssetToolkit() {
     }
   };
 
+  // Drag and drop image file handlers
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.types.includes("Files")) {
+      setIsDraggingFile(true);
+    }
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDraggingFile(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDraggingFile(false);
+
+    const file = e.dataTransfer.files?.[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setImageSrc(event.target.result as string);
+          setImageDims(null); // Reset dims to trigger reload measurement
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Dragging the frame overlay
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!imageSrc || !imageDims) return;
@@ -142,7 +176,7 @@ export default function AssetToolkit() {
     ctx.clearRect(0, 0, targetW, targetH);
 
     // If circular node, clip it
-    if (frameType === "node") {
+    if (frameType === "portrait") {
       ctx.beginPath();
       ctx.arc(targetW / 2, targetH / 2, targetW / 2 - 1, 0, Math.PI * 2);
       ctx.clip();
@@ -156,21 +190,6 @@ export default function AssetToolkit() {
 
     // Draw the sub-rectangle of the image
     ctx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, targetW, targetH);
-
-    // Apply borders
-    if (frameType === "banner") {
-      ctx.strokeStyle = "#c29d53";
-      ctx.lineWidth = 3.5;
-      ctx.beginPath();
-      ctx.roundRect(1.75, 1.75, targetW - 3.5, targetH - 3.5, 12);
-      ctx.stroke();
-    } else {
-      ctx.strokeStyle = "#c29d53";
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.arc(targetW / 2, targetH / 2, targetW / 2 - 2, 0, Math.PI * 2);
-      ctx.stroke();
-    }
 
     // Download PNG
     const url = canvas.toDataURL("image/png");
@@ -251,9 +270,30 @@ export default function AssetToolkit() {
             </div>
 
             {/* Editor Workspace Container */}
-            <div className="relative bg-[#05070c] border border-slate-900 rounded-2xl min-h-[420px] flex items-center justify-center overflow-hidden p-6 shadow-inner">
+            <div
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`relative bg-[#05070c] border-2 rounded-2xl min-h-[420px] flex items-center justify-center overflow-hidden p-6 shadow-inner transition-all duration-300 ${
+                isDraggingFile
+                  ? "border-[#c29d53] bg-[#c29d53]/5 scale-[1.01]"
+                  : "border-slate-900"
+              }`}
+            >
               {/* Grid guide mesh */}
               <div className="absolute inset-0 bg-[radial-gradient(#c29d53_0.03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-15" />
+
+              {isDraggingFile && (
+                <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm border-2 border-dashed border-[#c29d53] rounded-2xl flex flex-col items-center justify-center gap-3 z-50 pointer-events-none">
+                  <div className="w-16 h-16 rounded-full bg-[#c29d53]/15 border border-[#c29d53]/45 flex items-center justify-center text-[#e5c17d] shadow-lg animate-pulse">
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                    </svg>
+                  </div>
+                  <p className="text-sm font-bold text-[#e5c17d]">Drop image file to import</p>
+                  <p className="text-xs text-slate-400 font-medium">Supports PNG, JPG, or WebP</p>
+                </div>
+              )}
 
               {imageSrc ? (
                 /* Crop Wrapper holding the full image */
@@ -293,6 +333,17 @@ export default function AssetToolkit() {
                       <span className="absolute top-1 left-1 text-[8px] font-mono text-[#e5c17d]/65 font-bold tracking-tighter pointer-events-none uppercase">
                         {frameType}
                       </span>
+
+                      {/* Face alignment guidelines for banner crop */}
+                      {frameType === "banner" && (
+                        <>
+                          <div className="absolute top-0 bottom-0 left-[50%] border-l-2 border-dashed border-[#c29d53]/50 pointer-events-none" />
+                          <div className="absolute top-0 bottom-0 left-[75%] border-l-2 border-dashed border-[#c29d53]/50 pointer-events-none" />
+                          <span className="absolute -bottom-5 left-[62.5%] -translate-x-1/2 text-[9px] font-mono text-[#e5c17d]/75 font-bold tracking-wide pointer-events-none uppercase whitespace-nowrap bg-black/80 px-1 rounded border border-slate-900">
+                            Face Zone
+                          </span>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
@@ -329,12 +380,12 @@ export default function AssetToolkit() {
                       {/* Crop Image container representing list view */}
                       {previewUrl && (
                         <div
-                          className="absolute right-0 top-0 bottom-0 w-2/3 pointer-events-none opacity-80 mix-blend-lighten z-0 bg-cover"
+                          className="absolute top-0 bottom-0 right-0 w-[380px] pointer-events-none opacity-80 mix-blend-lighten z-0 bg-cover"
                           style={{
                             backgroundImage: `url(${previewUrl})`,
-                            backgroundPosition: "center",
-                            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 100%)",
-                            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 100%)",
+                            backgroundPosition: "right center",
+                            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)",
+                            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)",
                           }}
                         />
                       )}
@@ -430,12 +481,12 @@ export default function AssetToolkit() {
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
-                    Wide Banner Frame
+                    Champion Banner
                   </button>
                   <button
-                    onClick={() => setFrameType("node")}
+                    onClick={() => setFrameType("portrait")}
                     className={`py-3 px-4 rounded-xl border text-xs font-bold flex flex-col items-center justify-center gap-2.5 transition-all cursor-pointer ${
-                      frameType === "node"
+                      frameType === "portrait"
                         ? "bg-[#c29d53]/10 border-[#c29d53] text-[#e5c17d] shadow-[0_0_12px_rgba(194,157,83,0.15)]"
                         : "bg-slate-950/40 border-slate-900 text-slate-400 hover:text-slate-200"
                     }`}
@@ -443,7 +494,7 @@ export default function AssetToolkit() {
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                     </svg>
-                    Circle Upgrade Node
+                    Champion Portrait
                   </button>
                 </div>
               </div>
