@@ -79,7 +79,7 @@ export default function ChampionDetail({
                           strokeWidth="7"
                           strokeLinecap="round"
                           strokeDasharray="191"
-                          initial={{ strokeDashoffset: 191 }}
+                          initial={{ strokeDashoffset: 191, opacity: 0 }}
                           animate={{
                             strokeDashoffset: 191 * (1 - progress),
                             opacity: progress > 0 ? 1 : 0
