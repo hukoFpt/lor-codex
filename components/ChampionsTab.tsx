@@ -208,11 +208,15 @@ export default function ChampionsTab() {
 
   const filteredChampions = championsList.filter((champ) => {
     const matchesSearch = champ.name.toLowerCase().includes(champSearch.toLowerCase());
-    const matchesRegion = selectedRegion === "All" || champ.region === selectedRegion;
+    const matchesRegion = selectedRegion === "All" || (
+      Array.isArray(champ.region)
+        ? champ.region.includes(selectedRegion)
+        : champ.region === selectedRegion
+    );
     return matchesSearch && matchesRegion;
   });
 
-  const regions = ["All", ...Array.from(new Set(championsList.map((c) => c.region)))];
+  const regions = ["All", ...Array.from(new Set(championsList.flatMap((c) => Array.isArray(c.region) ? c.region : [c.region])))];
 
   // Derive the active champion. Fallback to first filtered champion if current selection is filtered out.
   const activeChamp = filteredChampions.find((c) => c.id === selectedChampId) || filteredChampions[0];
@@ -223,9 +227,9 @@ export default function ChampionsTab() {
   }, [activeChamp]);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex-1 min-h-0 flex flex-col">
       {/* Split Layout Container */}
-      <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex-grow min-h-0 flex flex-col md:flex-row gap-6">
         {/* Left Column: Search & Vertical Champion List */}
         <ChampionList
           filteredChampions={filteredChampions}

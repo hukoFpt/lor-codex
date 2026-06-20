@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans select-none selection:bg-amber-600/30 selection:text-amber-200">
+    <div className="h-screen overflow-hidden bg-[#000000] text-slate-100 flex flex-col font-sans select-none selection:bg-amber-600/30 selection:text-amber-200">
 
       {/* Dynamic Background Glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-600/5 rounded-full blur-[120px] pointer-events-none -z-10" />
@@ -31,7 +31,7 @@ export default function Home() {
       <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Main Layout Container */}
-      <main className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-8">
+      <main className={`flex-1 w-full px-4 sm:px-6 lg:px-8 py-5 flex flex-col min-h-0 ${activeTab === "champions" ? "overflow-hidden" : "overflow-y-auto"}`}>
 
         {/* Tab Views */}
         {activeTab === "champions" && <ChampionsTab />}
@@ -40,7 +40,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-[#050810] py-6 mt-12">
+      <footer className="border-t border-slate-900 bg-[#050810] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© 2026 Runeterra Codex. All rights reserved. Progress tracking database.</p>
           <div className="flex items-center gap-6">

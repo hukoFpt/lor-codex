@@ -48,6 +48,22 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
+}/* Hide scrollbar utility */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
-
-
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* Level Wave Animation */
+@keyframes wave-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-level-wave {
+  animation: wave-move 4s linear infinite;
+}
+.animate-level-wave-reverse {
+  animation: wave-move 3s linear infinite reverse;
+}

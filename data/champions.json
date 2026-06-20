@@ -13,6 +13,625 @@
       "region": "Ionia",
       "backgroundImage": "/champion/banner/ahri.png",
       "portraitImage": "/champion/portrait/ahri.png"
+    },
+    {
+      "id": "akshan",
+      "name": "Akshan",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/akshan.png",
+      "portraitImage": "/champion/portrait/akshan.png"
+    },
+    {
+      "id": "ambessa",
+      "name": "Ambessa",
+      "region": "Noxus",
+      "backgroundImage": "/champion/banner/ambessa.png",
+      "portraitImage": "/champion/portrait/ambessa.png"
+    },
+    {
+      "id": "anivia",
+      "name": "Anivia",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/anivia.png",
+      "portraitImage": "/champion/portrait/anivia.png"
+    },
+    {
+      "id": "annie",
+      "name": "Annie",
+      "region": "Noxus",
+      "backgroundImage": "/champion/banner/annie.png",
+      "portraitImage": "/champion/portrait/annie.png"
+    },
+    {
+      "id": "ashe",
+      "name": "Ashe",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/ashe.png",
+      "portraitImage": "/champion/portrait/ashe.png"
+    },
+    {
+      "id": "aurelion-sol",
+      "name": "Aurelion Sol",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/aurelion-sol.png",
+      "portraitImage": "/champion/portrait/aurelion-sol.png"
+    },
+    {
+      "id": "azir",
+      "name": "Azir",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/azir.png",
+      "portraitImage": "/champion/portrait/azir.png"
+    },
+    {
+      "id": "bard",
+      "name": "Bard",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/bard.png",
+      "portraitImage": "/champion/portrait/bard.png"
+    },
+    {
+      "id": "caitlyn",
+      "name": "Caitlyn",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/caitlyn.png",
+      "portraitImage": "/champion/portrait/caitlyn.png"
+    },
+    {
+      "id": "darius",
+      "name": "Darius",
+      "region": "Noxus",
+      "backgroundImage": "/champion/banner/darius.png",
+      "portraitImage": "/champion/portrait/darius.png"
+    },
+    {
+      "id": "diana",
+      "name": "Diana",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/diana.png",
+      "portraitImage": "/champion/portrait/diana.png"
+    },
+    {
+      "id": "ekko",
+      "name": "Ekko",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/ekko.png",
+      "portraitImage": "/champion/portrait/ekko.png"
+    },
+    {
+      "id": "elder-dragon",
+      "name": "Elder Dragon",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/elder-dragon.png",
+      "portraitImage": "/champion/portrait/elder-dragon.png"
+    },
+    {
+      "id": "elise",
+      "name": "Elise",
+      "region": "Shadow Isles",
+      "backgroundImage": "/champion/banner/elise.png",
+      "portraitImage": "/champion/portrait/elise.png"
+    },
+    {
+      "id": "evelynn",
+      "name": "Evelynn",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/evelynn.png",
+      "portraitImage": "/champion/portrait/evelynn.png"
+    },
+    {
+      "id": "fiddlesticks",
+      "name": "Fiddlesticks",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/fiddlesticks.png",
+      "portraitImage": "/champion/portrait/fiddlesticks.png"
+    },
+    {
+      "id": "garen",
+      "name": "Garen",
+      "region": "Demacia",
+      "backgroundImage": "/champion/banner/garen.png",
+      "portraitImage": "/champion/portrait/garen.png"
+    },
+    {
+      "id": "gnar",
+      "name": "Gnar",
+      "region": [
+        "Bandle City",
+        "Freljord"
+      ],
+      "backgroundImage": "/champion/banner/gnar.png",
+      "portraitImage": "/champion/portrait/gnar.png"
+    },
+    {
+      "id": "gwen",
+      "name": "Gwen",
+      "region": "Shadow Isles",
+      "backgroundImage": "/champion/banner/gwen.png",
+      "portraitImage": "/champion/portrait/gwen.png"
+    },
+    {
+      "id": "heimerdinger",
+      "name": "Heimerdinger",
+      "region": [
+        "Piltover & Zaun",
+        "Bandle City"
+      ],
+      "backgroundImage": "/champion/banner/heimerdinger.png",
+      "portraitImage": "/champion/portrait/heimerdinger.png"
+    },
+    {
+      "id": "illaoi",
+      "name": "Illaoi",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/illaoi.png",
+      "portraitImage": "/champion/portrait/illaoi.png"
+    },
+    {
+      "id": "jack",
+      "name": "Jack",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/jack.png",
+      "portraitImage": "/champion/portrait/jack.png"
+    },
+    {
+      "id": "janna",
+      "name": "Janna",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/janna.png",
+      "portraitImage": "/champion/portrait/janna.png"
+    },
+    {
+      "id": "jax",
+      "name": "Jax",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/jax.png",
+      "portraitImage": "/champion/portrait/jax.png"
+    },
+    {
+      "id": "jayce",
+      "name": "Jayce",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/jayce.png",
+      "portraitImage": "/champion/portrait/jayce.png"
+    },
+    {
+      "id": "jhin",
+      "name": "Jhin",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/jhin.png",
+      "portraitImage": "/champion/portrait/jhin.png"
+    },
+    {
+      "id": "jinx",
+      "name": "Jinx",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/jinx.png",
+      "portraitImage": "/champion/portrait/jinx.png"
+    },
+    {
+      "id": "kaisa",
+      "name": "Kaisa",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/kaisa.png",
+      "portraitImage": "/champion/portrait/kaisa.png"
+    },
+    {
+      "id": "kayle",
+      "name": "Kayle",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/kayle.png",
+      "portraitImage": "/champion/portrait/kayle.png"
+    },
+    {
+      "id": "kayn",
+      "name": "Kayn",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/kayn.png",
+      "portraitImage": "/champion/portrait/kayn.png"
+    },
+    {
+      "id": "kindred",
+      "name": "Kindred",
+      "region": "Shadow Isles",
+      "backgroundImage": "/champion/banner/kindred.png",
+      "portraitImage": "/champion/portrait/kindred.png"
+    },
+    {
+      "id": "leblanc",
+      "name": "Leblanc",
+      "region": "Noxus",
+      "backgroundImage": "/champion/banner/leblanc.png",
+      "portraitImage": "/champion/portrait/leblanc.png"
+    },
+    {
+      "id": "leesin",
+      "name": "Lee Sin",
+      "region": "Ionia",
+      "backgroundImage": "/champion/banner/leesin.png",
+      "portraitImage": "/champion/portrait/leesin.png"
+    },
+    {
+      "id": "leona",
+      "name": "Leona",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/leona.png",
+      "portraitImage": "/champion/portrait/leona.png"
+    },
+    {
+      "id": "lilia",
+      "name": "Lilia",
+      "region": "Ionia",
+      "backgroundImage": "/champion/banner/lilia.png",
+      "portraitImage": "/champion/portrait/lilia.png"
+    },
+    {
+      "id": "lux",
+      "name": "Lux",
+      "region": "Demacia",
+      "backgroundImage": "/champion/banner/lux.png",
+      "portraitImage": "/champion/portrait/lux.png"
+    },
+    {
+      "id": "lux-illuminated",
+      "name": "Lux: Illuminated",
+      "region": "Demacia",
+      "backgroundImage": "/champion/banner/lux-illuminated.png",
+      "portraitImage": "/champion/portrait/lux-illuminated.png"
+    },
+    {
+      "id": "master-yi",
+      "name": "Master Yi",
+      "region": "Ionia",
+      "backgroundImage": "/champion/banner/master-yi.png",
+      "portraitImage": "/champion/portrait/master-yi.png"
+    },
+    {
+      "id": "mel",
+      "name": "Mel",
+      "region": [
+        "Noxus",
+        "Piltover & Zaun"
+      ],
+      "backgroundImage": "/champion/banner/mel.png",
+      "portraitImage": "/champion/portrait/mel.png"
+    },
+    {
+      "id": "miss-fortune",
+      "name": "Miss Fortune",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/miss-fortune.png",
+      "portraitImage": "/champion/portrait/miss-fortune.png"
+    },
+    {
+      "id": "mordekaiser",
+      "name": "Mordekaiser",
+      "region": [
+        "Noxus",
+        "Shadow Isles"
+      ],
+      "backgroundImage": "/champion/banner/mordekaiser.png",
+      "portraitImage": "/champion/portrait/mordekaiser.png"
+    },
+    {
+      "id": "morgana",
+      "name": "Morgana",
+      "region": [
+        "Targon",
+        "Demacia"
+      ],
+      "backgroundImage": "/champion/banner/morgana.png",
+      "portraitImage": "/champion/portrait/morgana.png"
+    },
+    {
+      "id": "nami",
+      "name": "Nami",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/nami.png",
+      "portraitImage": "/champion/portrait/nami.png"
+    },
+    {
+      "id": "nasus",
+      "name": "Nasus",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/nasus.png",
+      "portraitImage": "/champion/portrait/nasus.png"
+    },
+    {
+      "id": "nautilus",
+      "name": "Nautilus",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/nautilus.png",
+      "portraitImage": "/champion/portrait/nautilus.png"
+    },
+    {
+      "id": "neeko",
+      "name": "Neeko",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/neeko.png",
+      "portraitImage": "/champion/portrait/neeko.png"
+    },
+    {
+      "id": "nidalee",
+      "name": "Nidalee",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/nidalee.png",
+      "portraitImage": "/champion/portrait/nidalee.png"
+    },
+    {
+      "id": "nilah",
+      "name": "Nilah",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/nilah.png",
+      "portraitImage": "/champion/portrait/nilah.png"
+    },
+    {
+      "id": "norra",
+      "name": "Norra",
+      "region": "Bandle City",
+      "backgroundImage": "/champion/banner/norra.png",
+      "portraitImage": "/champion/portrait/norra.png"
+    },
+    {
+      "id": "nunu-and-willump",
+      "name": "Nunu & Willump",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/nunu-and-willump.png",
+      "portraitImage": "/champion/portrait/nunu-and-willump.png"
+    },
+    {
+      "id": "ornn",
+      "name": "Ornn",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/ornn.png",
+      "portraitImage": "/champion/portrait/ornn.png"
+    },
+    {
+      "id": "pyke",
+      "name": "Pyke",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/pyke.png",
+      "portraitImage": "/champion/portrait/pyke.png"
+    },
+    {
+      "id": "sett",
+      "name": "Sett",
+      "region": "Ionia",
+      "backgroundImage": "/champion/banner/sett.png",
+      "portraitImage": "/champion/portrait/sett.png"
+    },
+    {
+      "id": "shyvana",
+      "name": "Shyvana",
+      "region": "Demacia",
+      "backgroundImage": "/champion/banner/shyvana.png",
+      "portraitImage": "/champion/portrait/shyvana.png"
+    },
+    {
+      "id": "soraka",
+      "name": "Soraka",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/soraka.png",
+      "portraitImage": "/champion/portrait/soraka.png"
+    },
+    {
+      "id": "spirit-blossom-ahri",
+      "name": "Spirit Blossom Ahri",
+      "region": [
+        "Spirit Blossom",
+        "Ionia"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-ahri.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-ahri.png"
+    },
+    {
+      "id": "spirit-blossom-evelynn",
+      "name": "Spirit Blossom Evelynn",
+      "region": [
+        "Spirit Blossom",
+        "Runeterra"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-evelynn.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-evelynn.png"
+    },
+    {
+      "id": "spirit-blossom-kindred",
+      "name": "Spirit Blossom Kindred",
+      "region": [
+        "Spirit Blossom",
+        "Shadow Isles"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-kindred.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-kindred.png"
+    },
+    {
+      "id": "spirit-blossom-master-yi",
+      "name": "Spirit Blossom Master Yi",
+      "region": [
+        "Spirit Blossom",
+        "Ionia"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-master-yi.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-master-yi.png"
+    },
+    {
+      "id": "spirit-blossom-teemo",
+      "name": "Spirit Blossom Teemo",
+      "region": [
+        "Spirit Blossom",
+        "Bandle City"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-teemo.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-teemo.png"
+    },
+    {
+      "id": "spirit-blossom-yasuo",
+      "name": "Spirit Blossom Yasuo",
+      "region": [
+        "Spirit Blossom",
+        "Ionia"
+      ],
+      "backgroundImage": "/champion/banner/spirit-blossom-yasuo.png",
+      "portraitImage": "/champion/portrait/spirit-blossom-yasuo.png"
+    },
+    {
+      "id": "swain",
+      "name": "Swain",
+      "region": "Noxus",
+      "backgroundImage": "/champion/banner/swain.png",
+      "portraitImage": "/champion/portrait/swain.png"
+    },
+    {
+      "id": "tahm-kench",
+      "name": "Tahm Kench",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/tahm-kench.png",
+      "portraitImage": "/champion/portrait/tahm-kench.png"
+    },
+    {
+      "id": "taliyah",
+      "name": "Taliyah",
+      "region": "Shurima",
+      "backgroundImage": "/champion/banner/taliyah.png",
+      "portraitImage": "/champion/portrait/taliyah.png"
+    },
+    {
+      "id": "teemo",
+      "name": "Teemo",
+      "region": [
+        "Piltover & Zaun",
+        "Bandle City"
+      ],
+      "backgroundImage": "/champion/banner/teemo.png",
+      "portraitImage": "/champion/portrait/teemo.png"
+    },
+    {
+      "id": "the-poro-king",
+      "name": "The Poro King",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/the-poro-king.png",
+      "portraitImage": "/champion/portrait/the-poro-king.png"
+    },
+    {
+      "id": "thresh",
+      "name": "Thresh",
+      "region": "Shadow Isles",
+      "backgroundImage": "/champion/banner/thresh.png",
+      "portraitImage": "/champion/portrait/thresh.png"
+    },
+    {
+      "id": "tryndamere",
+      "name": "Tryndamere",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/tryndamere.png",
+      "portraitImage": "/champion/portrait/tryndamere.png"
+    },
+    {
+      "id": "twisted-fate",
+      "name": "Twisted Fate",
+      "region": "Bilgewater",
+      "backgroundImage": "/champion/banner/twisted-fate.png",
+      "portraitImage": "/champion/portrait/twisted-fate.png"
+    },
+    {
+      "id": "udyr",
+      "name": "Udyr",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/udyr.png",
+      "portraitImage": "/champion/portrait/udyr.png"
+    },
+    {
+      "id": "varus",
+      "name": "Varus",
+      "region": "Runeterra",
+      "backgroundImage": "/champion/banner/varus.png",
+      "portraitImage": "/champion/portrait/varus.png"
+    },
+    {
+      "id": "vayne",
+      "name": "Vayne",
+      "region": "Demacia",
+      "backgroundImage": "/champion/banner/vayne.png",
+      "portraitImage": "/champion/portrait/vayne.png"
+    },
+    {
+      "id": "veigar",
+      "name": "Veigar",
+      "region": [
+        "Bandle City",
+        "Shadow Isles"
+      ],
+      "backgroundImage": "/champion/banner/veigar.png",
+      "portraitImage": "/champion/portrait/veigar.png"
+    },
+    {
+      "id": "vex",
+      "name": "Vex",
+      "region": [
+        "Bandle City",
+        "Shadow Isles"
+      ],
+      "backgroundImage": "/champion/banner/vex.png",
+      "portraitImage": "/champion/portrait/vex.png"
+    },
+    {
+      "id": "vi",
+      "name": "Vi",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/vi.png",
+      "portraitImage": "/champion/portrait/vi.png"
+    },
+    {
+      "id": "viego",
+      "name": "Viego",
+      "region": "Shadow Isles",
+      "backgroundImage": "/champion/banner/viego.png",
+      "portraitImage": "/champion/portrait/viego.png"
+    },
+    {
+      "id": "viktor",
+      "name": "Viktor",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/viktor.png",
+      "portraitImage": "/champion/portrait/viktor.png"
+    },
+    {
+      "id": "volibear",
+      "name": "Volibear",
+      "region": "Freljord",
+      "backgroundImage": "/champion/banner/volibear.png",
+      "portraitImage": "/champion/portrait/volibear.png"
+    },
+    {
+      "id": " Warwick",
+      "name": "Warwick",
+      "region": "Piltover & Zaun",
+      "backgroundImage": "/champion/banner/warwick.png",
+      "portraitImage": "/champion/portrait/warwick.png"
+    },
+    {
+      "id": " Yasuo",
+      "name": "Yasuo",
+      "region": "Ionia",
+      "backgroundImage": "/champion/banner/yasuo.png",
+      "portraitImage": "/champion/portrait/yasuo.png"
+    },
+    {
+      "id": "yuumi",
+      "name": "Yuumi",
+      "region": [
+        "Bandle City",
+        "Targon"
+      ],
+      "backgroundImage": "/champion/banner/yuumi.png",
+      "portraitImage": "/champion/portrait/yuumi.png"
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "region": "Targon",
+      "backgroundImage": "/champion/banner/zoe.png",
+      "portraitImage": "/champion/portrait/zoe.png"
     }
   ]
 }

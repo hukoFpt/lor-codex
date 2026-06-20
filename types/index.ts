@@ -54,7 +54,7 @@ export interface PerkCurves {
 export interface Champion {
   id: string;
   name: string;
-  region: string;
+  region: string | string[];
   level: number;
   stars: number;
   xp: number;

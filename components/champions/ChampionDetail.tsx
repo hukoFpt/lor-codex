@@ -6,6 +6,7 @@ import DeckTab from "./details/DeckTab";
 import RelicTab from "./details/RelicTab";
 import ConstellationTab from "./details/ConstellationTab";
 import { motion } from "framer-motion";
+import { getRegionGlowColor } from "./ChampionList";
 
 interface ChampionDetailProps {
   activeChamp: Champion | undefined;
@@ -35,18 +36,18 @@ export default function ChampionDetail({
   isLoading
 }: ChampionDetailProps) {
   return (
-    <div className={`w-full transition-all duration-300 ${isListCollapsed ? "flex-1" : "md:w-2/3"} h-auto md:h-auto flex flex-col`}>
+    <div className={`w-full transition-all duration-300 ${isListCollapsed ? "md:w-[calc(100%-104px)]" : "md:w-2/3"} h-auto md:h-full flex flex-col min-h-0`}>
       {isLoading ? (
-        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 min-h-[450px] flex flex-col">
-          <div className="bg-[#0b0f1a]/95 rounded-2xl w-full flex-1 min-h-[446px] flex flex-col items-center justify-center gap-4 relative p-6 md:p-8">
+        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 h-full flex flex-col flex-grow min-h-0">
+          <div className="bg-[#0b0f1a]/95 rounded-2xl w-full flex-grow flex flex-col items-center justify-center gap-4 relative p-6 md:p-8">
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 rounded-2xl" />
             <div className="w-12 h-12 border-4 border-dashed border-[#c29d53] rounded-full animate-spin z-10" />
             <p className="text-sm font-bold text-slate-400 font-mono tracking-wider animate-pulse z-10">Syncing Champion Codex...</p>
           </div>
         </div>
       ) : activeChamp ? (
-        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 h-auto flex flex-col">
-          <div className="bg-[#0b0f1a]/95 rounded-2xl p-6 md:p-8 flex flex-col gap-5 relative h-auto">
+        <div className="rounded-2xl bg-gradient-to-b from-[#c29d53]/40 via-slate-800/20 to-slate-950/10 p-0.5 h-auto md:h-full flex flex-col flex-grow min-h-0">
+          <div className="bg-[#0b0f1a]/95 rounded-2xl p-6 md:p-8 flex flex-col gap-5 relative h-full flex-grow min-h-0">
             {/* Grid background mesh overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 rounded-2xl" />
 
@@ -54,7 +55,7 @@ export default function ChampionDetail({
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-900 pb-5 z-10">
               <div>
                 <span className="text-[10px] uppercase tracking-widest text-[#e5c17d] font-semibold bg-[#c29d53]/10 px-2.5 py-1 rounded border border-[#c29d53]/20">
-                  {activeChamp.region}
+                  {Array.isArray(activeChamp.region) ? activeChamp.region.join(" / ") : activeChamp.region}
                 </span>
                 <h2 className="text-3xl font-extrabold mt-2 text-slate-100">
                   {activeChamp.name}
@@ -101,7 +102,7 @@ export default function ChampionDetail({
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
                     <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-none mb-0.5">LVL</span>
-                    <div className="flex items-center justify-center gap-0.5">
+                    <div className="flex items-center justify-center gap-0">
                       {/* Decrease Level Button (Left) */}
                       <button
                         onClick={() => {
@@ -109,7 +110,7 @@ export default function ChampionDetail({
                           updateChampionProgress(activeChamp.id, { level: val });
                         }}
                         disabled={activeChamp.level <= 1}
-                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center px-0.5"
+                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center"
                         title="Previous Level"
                       >
                         <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -127,7 +128,7 @@ export default function ChampionDetail({
                           const val = Math.max(1, Math.min(activeChamp.maxLevel, parseInt(e.target.value) || 1));
                           updateChampionProgress(activeChamp.id, { level: val });
                         }}
-                        className="w-8 text-center bg-transparent border-none p-0 text-lg font-black font-mono text-[#e5c17d] focus:outline-none focus:ring-0 outline-none select-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none leading-none"
+                        className="w-5 text-center bg-transparent border-none p-0 text-lg font-black font-mono text-[#e5c17d] focus:outline-none focus:ring-0 outline-none select-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none leading-none"
                       />
 
                       {/* Increase Level Button (Right) */}
@@ -137,7 +138,7 @@ export default function ChampionDetail({
                           updateChampionProgress(activeChamp.id, { level: val });
                         }}
                         disabled={activeChamp.level >= activeChamp.maxLevel}
-                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center px-0.5"
+                        className="text-slate-555 hover:text-[#e5c17d] disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:text-slate-555 transition-colors cursor-pointer flex items-center justify-center"
                         title="Next Level"
                       >
                         <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -175,21 +176,56 @@ export default function ChampionDetail({
                   )}
                 </div>
 
-                {/* Star Power */}
+                {/* Star Power & Bonus Stats */}
                 <div className="flex flex-col items-start md:items-end gap-1 shrink-0 pb-1">
                   <span className="text-[10px] text-slate-400 font-mono">Star Power</span>
                   <div className="flex items-center gap-1">
-                    {Array.from({ length: getConstellationMaxStars(activeChamp) }).map((_, i) => (
-                      <svg
-                        key={i}
-                        className={`w-5 h-5 ${i < activeChamp.stars ? "text-[#e5c17d]" : "text-slate-800"}`}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
+                    {Array.from({ length: getConstellationMaxStars(activeChamp) }).map((_, i) => {
+                      const activeColor = "#e5c17d";
+                      return (
+                        <svg
+                          key={i}
+                          className="w-5 h-5 transition-all duration-300"
+                          style={{
+                            color: i < activeChamp.stars ? activeColor : 'rgb(30, 41, 59)',
+                            filter: i < activeChamp.stars ? `drop-shadow(0 0 3px ${activeColor})` : undefined
+                          }}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      );
+                    })}
                   </div>
+                  {/* Bonus Stats Dots */}
+                  {(() => {
+                    const bonusNodes = activeChamp.constellation?.nodes?.filter(n => n.upgradeType === "Bonus Stat") || [];
+                    if (bonusNodes.length === 0) return null;
+                    return (
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        {bonusNodes.map((node) => {
+                          const isUnlocked = activeChamp.unlockedNodes?.includes(node.id);
+                          const dotColor = node.color === "blue" ? "#38bdf8" : node.color === "purple" ? "#b79ced" : "#e5c17d";
+                          return (
+                            <svg
+                              key={node.id}
+                              className="w-2.5 h-2.5 transition-all duration-300"
+                              style={{
+                                color: isUnlocked ? dotColor : '#1e293b',
+                                filter: isUnlocked ? `drop-shadow(0 0 2px ${dotColor})` : undefined
+                              }}
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <title>{`${node.title}: ${isUnlocked ? 'Unlocked' : 'Locked'}`}</title>
+                              <path d="M12 2c0 5.523 4.477 10 10 10-5.523 0-10 4.477-10 10 0-5.523-4.477-10-10-10 5.523 0 10-4.477 10-10z" />
+                            </svg>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
@@ -218,7 +254,7 @@ export default function ChampionDetail({
             </div>
 
             {/* Tab Content */}
-            <div className="z-10 mt-1 flex-1 pr-1">
+            <div className={`z-10 mt-1 flex-1 pr-1 min-h-0 ${activeDetailTab === "level" ? "overflow-y-auto md:overflow-hidden md:flex md:flex-col" : "overflow-y-auto"}`}>
               {activeDetailTab === "overview" && (
                 <OverviewTab champion={activeChamp} />
               )}
@@ -252,7 +288,9 @@ export default function ChampionDetail({
             {/* Ambient Deck Overview Note */}
             <div className="mt-auto border-t border-slate-900/60 pt-4 text-xs text-slate-500 flex justify-between items-center z-10 font-mono">
               <span>SYSTEM_ID: LOR_CHAMP_{activeChamp.id.toUpperCase()}</span>
-              <span>STATUS: SYNCED</span>
+              <span className={activeChamp.stars === 0 ? "text-rose-500 font-bold" : "text-emerald-500 font-bold"}>
+                STATUS: {activeChamp.stars === 0 ? "LOCKED" : "UNLOCKED"}
+              </span>
             </div>
 
           </div>

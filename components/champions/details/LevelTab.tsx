@@ -417,11 +417,11 @@ export default function LevelTab({ champion }: LevelTabProps) {
   const currentCoords = getCoords(safeLevel, selectedPerk.rawVal);
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 mt-5 h-full">
+    <div className="flex flex-col md:flex-row gap-8 mt-5 h-full min-h-0">
       {/* Left Column - Roadmap Timeline */}
-      <div className="flex-1 flex flex-col gap-4 min-w-0">
+      <div className="flex-1 flex flex-col gap-4 min-w-0 h-full">
         <h3 className="text-sm text-slate-400 font-bold tracking-widest uppercase">Level Roadmap (Max {maxLevel})</h3>
-        <div className="max-h-[450px] overflow-y-auto pr-3 pl-4 scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-900">
+        <div className="flex-1 min-h-0 overflow-y-auto pr-3 pl-4 scrollbar-thin scrollbar-track-slate-950 scrollbar-thumb-slate-900">
           <div className="relative border-l border-slate-900 pl-6 flex flex-col gap-7 py-3">
             {milestones.map((m) => {
               const isUnlocked = level >= m.lvl;
