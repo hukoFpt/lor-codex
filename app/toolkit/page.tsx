@@ -140,21 +140,32 @@ export default function AssetToolkit() {
     lastFramePos.current = { ...framePos };
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  useEffect(() => {
     if (!isDraggingFrame || !imageDims) return;
-    const dx = e.clientX - dragStart.current.x;
-    const dy = e.clientY - dragStart.current.y;
-    
-    // Constrain frame within the image boundaries
-    const targetX = Math.max(0, Math.min(imageDims.renderedWidth - frameWidth, lastFramePos.current.x + dx));
-    const targetY = Math.max(0, Math.min(imageDims.renderedHeight - frameHeight, lastFramePos.current.y + dy));
-    
-    setFramePos({ x: targetX, y: targetY });
-  };
 
-  const handleMouseUpOrLeave = () => {
-    setIsDraggingFrame(false);
-  };
+    const handleWindowMouseMove = (e: MouseEvent) => {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      
+      // Constrain frame within the image boundaries
+      const targetX = Math.max(0, Math.min(imageDims.renderedWidth - frameWidth, lastFramePos.current.x + dx));
+      const targetY = Math.max(0, Math.min(imageDims.renderedHeight - frameHeight, lastFramePos.current.y + dy));
+      
+      setFramePos({ x: targetX, y: targetY });
+    };
+
+    const handleWindowMouseUp = () => {
+      setIsDraggingFrame(false);
+    };
+
+    window.addEventListener("mousemove", handleWindowMouseMove);
+    window.addEventListener("mouseup", handleWindowMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleWindowMouseMove);
+      window.removeEventListener("mouseup", handleWindowMouseUp);
+    };
+  }, [isDraggingFrame, imageDims, frameWidth, frameHeight]);
 
   // Crop & Download handler
   const handleCropAndDownload = () => {
@@ -314,9 +325,6 @@ export default function AssetToolkit() {
                   {imageDims && (
                     <div
                       onMouseDown={handleMouseDown}
-                      onMouseMove={handleMouseMove}
-                      onMouseUp={handleMouseUpOrLeave}
-                      onMouseLeave={handleMouseUpOrLeave}
                       style={{
                         left: `${framePos.x}px`,
                         top: `${framePos.y}px`,
@@ -327,7 +335,7 @@ export default function AssetToolkit() {
                       }}
                       className={`absolute cursor-move select-none border-2 border-[#c29d53] ${
                         frameType === "banner" ? "rounded-xl" : "rounded-full"
-                      } shadow-[0_0_15px_rgba(194,157,83,0.3)] flex items-center justify-center transition-all duration-75`}
+                      } shadow-[0_0_15px_rgba(194,157,83,0.3)] flex items-center justify-center transition-[border-color,box-shadow,background-color] duration-75`}
                     >
                       {/* Corner indicators for visual detail */}
                       <span className="absolute top-1 left-1 text-[8px] font-mono text-[#e5c17d]/65 font-bold tracking-tighter pointer-events-none uppercase">
