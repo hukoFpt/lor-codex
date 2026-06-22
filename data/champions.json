@@ -211,7 +211,7 @@
     },
     {
       "id": "kaisa",
-      "name": "Kaisa",
+      "name": "Kai'Sa",
       "region": "Shurima",
       "backgroundImage": "/champion/banner/kaisa.png",
       "portraitImage": "/champion/portrait/kaisa.png"
@@ -239,7 +239,7 @@
     },
     {
       "id": "leblanc",
-      "name": "Leblanc",
+      "name": "LeBlanc",
       "region": "Noxus",
       "backgroundImage": "/champion/banner/leblanc.png",
       "portraitImage": "/champion/portrait/leblanc.png"
